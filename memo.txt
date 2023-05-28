@@ -1,13 +1,19 @@
 [Filter]
+- 서블릿이 제공함.
 - Filter는 filterChain을 사용해, 연쇄적으로 사용할수 있다.
 - 개념 참조 URL :  https://gardeny.tistory.com/35
 - 일반적으로 사용하는곳으로썬 공통 로그 및 인코딩 변환 및 인증 (사용자 정보 확인 및 권한체크)로 사용한다.
 - OncePerRequestFilter 이 클래스는 필터를 중복으로 사용하지않아, 성능에 도움이 된다네?
 
+[Interceptor]
+- 스프링 MVC가 제공하는 기능.
 
 
 
-[궁금증]
+
+
+
+* 궁금증
 - filter의 개념과, OncePerRequestFilter의 차이점.
 - https://stackoverflow.com/questions/13152946/what-is-onceperrequestfilter
 

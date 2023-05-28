@@ -21,7 +21,7 @@ public class FirstFilter implements Filter {
         log.info(">>>>>>>>>>>>>>>> doFilter 시작:: FirstFilter");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 
-        chain.doFilter(request, response);
+        chain.doFilter(request, response); //다음 필터를 실행. (필수로 추가필요 )
         log.info(">>>>>>>>>>>>>>>> doFilter 종료:: FirstFilter [URL] : {}", httpServletRequest.getRequestURI());
 
     }
