@@ -2,8 +2,7 @@ package com.example.spring_filter_interceptor_aop.common.config;
 
 import com.example.spring_filter_interceptor_aop.common.filter.LoggingFilter;
 import com.example.spring_filter_interceptor_aop.common.filter.HeaderFilter;
-import com.example.spring_filter_interceptor_aop.common.interceptor.LogInterceptor;
-import com.example.spring_filter_interceptor_aop.common.interceptor.LoginCheckInterceptor;
+import com.example.spring_filter_interceptor_aop.common.interceptor.AuthenticatedInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +16,16 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogInterceptor())
+        registry.addInterceptor(new AuthenticatedInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/css/**" , "/*.ico", "/error");
 
-        registry.addInterceptor(new LoginCheckInterceptor())
-                .order(2)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/css/**" , "/*.ico", "/error");
+//        registry.addInterceptor(new LogInterceptor())
+//                .order(1)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/css/**" , "/*.ico", "/error");
+
 
 
     }
