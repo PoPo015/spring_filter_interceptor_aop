@@ -7,7 +7,7 @@ import javax.servlet.*;
 import java.io.IOException;
 
 @Slf4j
-public class SecondFilter implements Filter {
+public class XssFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -16,14 +16,15 @@ public class SecondFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        log.info(">>>>>>>>>>>>>>>> dofilter 시작 ::  SecondFilter ");
-        chain.doFilter(request,response);
-        log.info(">>>>>>>>>>>>>>>> dofilter 종료 ::  SecondFilter ");
+        log.info(">>>>>>>>>>>>>>>> dofilter 시작 ::  XssFilter ");
+        chain.doFilter(request, response);
+        log.info(">>>>>>>>>>>>>>>> dofilter 종료 ::  XssFilter ");
 
     }
 
     @Override
     public void destroy() {
-        log.info(">>>>>>>>>>>>>>>> init :: SecondFilter 최초 servlet 기동시 1회 실행");
+        log.info(">>>>>>>>>>>>>>>> init :: XssFilter 최초 servlet 기동시 1회 실행");
     }
+
 }
