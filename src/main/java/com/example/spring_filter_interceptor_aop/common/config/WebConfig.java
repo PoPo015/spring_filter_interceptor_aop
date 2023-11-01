@@ -1,6 +1,7 @@
 package com.example.spring_filter_interceptor_aop.common.config;
 
 import com.example.spring_filter_interceptor_aop.common.filter.LoggingFilter;
+import com.example.spring_filter_interceptor_aop.common.filter.HeaderFilter;
 import com.example.spring_filter_interceptor_aop.common.interceptor.LogInterceptor;
 import com.example.spring_filter_interceptor_aop.common.interceptor.LoginCheckInterceptor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -30,7 +31,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public FilterRegistrationBean beanFilter(){
+    public FilterRegistrationBean<Filter> beanFilter(){
         FilterRegistrationBean<Filter> filterFilterRegistrationBean = new FilterRegistrationBean<>();
         filterFilterRegistrationBean.setFilter(new LoggingFilter());
         filterFilterRegistrationBean.setOrder(1);
@@ -38,13 +39,13 @@ public class WebConfig implements WebMvcConfigurer {
         return filterFilterRegistrationBean;
     }
 
-//    @Bean
-//    public FilterRegistrationBean beanFilter2(){
-//        FilterRegistrationBean<Filter> filterFilterRegistrationBean = new FilterRegistrationBean<>();
-//        filterFilterRegistrationBean.setFilter(new XssFilter());
-//        filterFilterRegistrationBean.setOrder(2);
-//        filterFilterRegistrationBean.addUrlPatterns("/*");
-//        return filterFilterRegistrationBean;
-//    }
+    @Bean
+    public FilterRegistrationBean<Filter> beanFilter2(){
+        FilterRegistrationBean<Filter> filterFilterRegistrationBean = new FilterRegistrationBean<>();
+        filterFilterRegistrationBean.setFilter(new HeaderFilter());
+        filterFilterRegistrationBean.setOrder(2);
+        filterFilterRegistrationBean.addUrlPatterns("/*");
+        return filterFilterRegistrationBean;
+    }
 
 }
