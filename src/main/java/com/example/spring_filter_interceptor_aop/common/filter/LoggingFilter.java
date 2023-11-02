@@ -3,7 +3,10 @@ package com.example.spring_filter_interceptor_aop.common.filter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
@@ -16,19 +19,15 @@ import java.io.IOException;
 @Component
 public class LoggingFilter implements Filter {
 
-    private final ObjectMapper objectMapper;
-
-    public LoggingFilter() {
-        this.objectMapper = new ObjectMapper();
-
-    }
+    private ObjectMapper objectMapper;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.info(">>>>>>>>>>>>>>>> init ::  LoggingFilter 최초 servlet 기동시 1회 실행");
+        WebApplicationContext applicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(filterConfig.getServletContext());
+        objectMapper = applicationContext.getBean(ObjectMapper.class);
     }
 
-    // header 정보, 세션 정보, URL 등등 가져올수 있겠네.
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.info(">>>>>>>>>>>>>>>> doFilter 시작:: FirstFilter");
